@@ -5,11 +5,12 @@ const message = require('uport-transports').message.util;
 const transports = require('uport-transports').transport;
 const decodeJWT = require('did-jwt').decodeJWT;
 const config = config_1.Configuration.getInstance();
-exports.Exercice1 = (req, res) => {
+exports.Exercice4 = (req, res) => {
     config.getCredentials().createDisclosureRequest({
         requested: ["name"],
         notifications: true,
-        callbackUrl: config.endpoint + '/Exercice1callback'
+        verified: ['Identity'],
+        callbackUrl: config.endpoint + '/Exercice4callback'
     }).then(requestToken => {
         console.log(decodeJWT(requestToken)); //log request token to console
         const uri = message.paramsToQueryString(message.messageToURI(requestToken), { callback_type: 'post' });
@@ -17,14 +18,16 @@ exports.Exercice1 = (req, res) => {
         res.send(`<div><img src="${qr}"/></div>`);
     });
 };
-exports.Exercice1Callback = (req, res) => {
+exports.Exercice4Callback = (req, res) => {
     const jwt = req.body.access_token;
     console.log(jwt);
-    config.getCredentials().authenticateDisclosureResponse(jwt).then(credentials => {
-        console.log(credentials);
-        // Validate the information and apply authorization logic
+    console.log(decodeJWT(jwt));
+    config.getCredentials().authenticateDisclosureResponse(jwt).then(creds => {
+        //validate specific data per use case
+        console.log(creds);
+        console.log(creds.verified[0]);
     }).catch(err => {
-        console.log(err);
+        console.log("oops");
     });
 };
-//# sourceMappingURL=Exercice1.js.map
+//# sourceMappingURL=Exercice4.js.map

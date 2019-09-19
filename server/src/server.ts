@@ -1,55 +1,45 @@
+import { Exercice1, Exercice1Callback } from './Exercice1';
 // import { Exercice1Callback, Exercice1 } from 'Exercice1';
 import express from 'express';
 import bodyParser from 'body-parser';
 import ngrok from 'ngrok';
+import { Credentials } from 'uport-credentials';
+import { Configuration } from './config';
+import { Exercice2, Exercice2Callback, Exercice2TxCallback } from './Exercice2';
+import { Exercice3, Exercice3Callback } from './Exercice3';
+import { Exercice4Callback, Exercice4 } from './Exercice4';
 
 const decodeJWT = require('did-jwt').decodeJWT
-const { Credentials } = require('uport-credentials')
 const transports = require('uport-transports').transport
 const message = require('uport-transports').message.util
+const config = Configuration.getInstance();
 
-let endpoint = ''
 const app = express();
 app.use(bodyParser.json({ type: '*/*' }))
 
-//setup Credentials object with newly created application identity.
-const credentials = new Credentials({
-  appName: 'Login Example',
-  did: 'did:ethr:0x3c01723a220cd7a959675e2377f8843fa5dec9a0',
-  privateKey: '5f190d5c3996862ca8f89b499714a9f49efddded7bab86eb288ede4df4d306e3'
-})
 
-app.get('/Exercice1', (req, res) => {
-  credentials.createDisclosureRequest({
-    requested: ["name"],
-    notifications: true,
-    callbackUrl: endpoint + '/Exercice1callback'
-  }).then(requestToken => {
-    console.log(decodeJWT(requestToken))  //log request token to console
-    console.log(message) 
-    console.log(message.getURLJWT()) 
-    const uri = message.paramsToQueryString(message.messageToURI(requestToken), {callback_type: 'post'})
-    console.log(uri);
-    const qr =  transports.ui.getImageDataURI(uri)
-    res.send(`<div><img src="${qr}"/></div>`)
-  })
-});
+app.get('/Exercice1', Exercice1);
 
-app.post('/Exercice1callback', (req, res) => {
-  const jwt = req.body.access_token
-  console.log(jwt);
-  credentials.authenticateDisclosureResponse(jwt).then(credentials => {
-      console.log(credentials);
-      // Validate the information and apply authorization logic
-  }).catch( err => {
-      console.log(err)
-  })
-});
+app.post('/Exercice1callback', Exercice1Callback);
+
+app.get('/Exercice2', Exercice2);
+
+app.post('/Exercice2callback', Exercice2Callback);
+
+app.post('/Exercice2txcallback', Exercice2TxCallback);
+
+app.get('/Exercice3', Exercice3);
+
+app.post('/Exercice3callback', Exercice3Callback);
+
+app.get('/Exercice4', Exercice4);
+
+app.post('/Exercice4callback', Exercice4Callback);
 
 // run the app server and tunneling service
 const server = app.listen(8088, () => {
   ngrok.connect(8088).then(ngrokUrl => {
-    endpoint = ngrokUrl
-    console.log(`Your dApp is being served!, open at ${endpoint} and scan the QR to login!`)
+    config.endpoint = ngrokUrl
+    console.log(`Your dApp is being served!, open at ${config.endpoint} and scan the QR to login!`)
   })
 })
