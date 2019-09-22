@@ -14,7 +14,8 @@ exports.Exercice1 = (req, res) => {
         console.log(decodeJWT(requestToken)); //log request token to console
         const uri = message.paramsToQueryString(message.messageToURI(requestToken), { callback_type: 'post' });
         const qr = transports.ui.getImageDataURI(uri);
-        res.send(`<div><img src="${qr}"/></div>`);
+        // res.json({qr: qr});
+        res.json({ data: requestToken });
     });
 };
 exports.Exercice1Callback = (req, res) => {

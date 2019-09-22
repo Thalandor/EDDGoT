@@ -3,18 +3,20 @@ import { Exercice1, Exercice1Callback } from './Exercice1';
 import express from 'express';
 import bodyParser from 'body-parser';
 import ngrok from 'ngrok';
-import { Credentials } from 'uport-credentials';
 import { Configuration } from './config';
 import { Exercice2, Exercice2Callback, Exercice2TxCallback } from './Exercice2';
 import { Exercice3, Exercice3Callback } from './Exercice3';
 import { Exercice4Callback, Exercice4 } from './Exercice4';
 
-const decodeJWT = require('did-jwt').decodeJWT
-const transports = require('uport-transports').transport
-const message = require('uport-transports').message.util
 const config = Configuration.getInstance();
 
 const app = express();
+
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*"); // update to match the domain you will make the request from
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+});
 app.use(bodyParser.json({ type: '*/*' }))
 
 

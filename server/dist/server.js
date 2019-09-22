@@ -12,11 +12,13 @@ const config_1 = require("./config");
 const Exercice2_1 = require("./Exercice2");
 const Exercice3_1 = require("./Exercice3");
 const Exercice4_1 = require("./Exercice4");
-const decodeJWT = require('did-jwt').decodeJWT;
-const transports = require('uport-transports').transport;
-const message = require('uport-transports').message.util;
 const config = config_1.Configuration.getInstance();
 const app = express_1.default();
+app.use(function (req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*"); // update to match the domain you will make the request from
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    next();
+});
 app.use(body_parser_1.default.json({ type: '*/*' }));
 app.get('/Exercice1', Exercice1_1.Exercice1);
 app.post('/Exercice1callback', Exercice1_1.Exercice1Callback);
