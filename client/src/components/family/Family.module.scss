@@ -1,0 +1,15 @@
+.familyContainer{
+    background-color: black;
+    display: flex;    
+    border: 1px solid white;
+
+    .picture{
+        width: 350px;
+    }
+
+    .familyInfo{
+        display: flex;
+        flex-direction: column;
+    }
+}
+

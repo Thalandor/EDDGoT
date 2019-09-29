@@ -1,0 +1,9 @@
+.Header{
+    background-color: green;
+    height: 150px;
+}
+
+.Content{
+    background-color: yellow;
+    height: calc(100% - 150px);
+}

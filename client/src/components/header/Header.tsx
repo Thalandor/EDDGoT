@@ -1,24 +1,33 @@
 import React from 'react';
 import styles from './Header.module.scss'
-import { routesMap } from '../../routes.config';
+import { familyRoutesMap } from '../../routes.config';
 import { Link } from 'react-router-dom';
+import LogoutBtn from '../logout/logout';
 
-const Header = () =>{
+const Header = () => {
 
-    return (
-        <ul className="navBar">
-          {
-            Object.keys(routesMap).map((routeKey, index) => {
-              const route = routesMap[routeKey]
-              return (
-                <li key={index}>
-                  <Link to={route.path}>{route.label}</Link>
-                </li>
-              )
-            })
-          }
-        </ul>
-    )
+  return (
+    <div>
+      <ul className="navBar">
+        {
+          Object.keys(familyRoutesMap).map((routeKey, index) => {
+            const route = familyRoutesMap[routeKey]
+            return (
+              <div>
+                {
+                  <li>
+                    <Link key={index} to={route.path}>{route.label}</Link>
+                  </li>
+                }
+              </div>
+            )
+          })
+        }
+
+      </ul>
+      <LogoutBtn></LogoutBtn>
+    </div>
+  )
 }
 
 export default Header;

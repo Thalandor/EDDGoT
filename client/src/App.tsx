@@ -1,31 +1,18 @@
-import React, { Suspense, useEffect } from 'react';
+import React from 'react';
 import styles from './App.module.scss'
-import Header from './components/header/Header';
-import { routesMap } from './routes.config';
 import { Route, Switch } from 'react-router-dom';
 import Login from './components/login/Login';
 import EnsureLoggedIn from './components/login/EnsureLoggedIn';
+import Home from './components/home/Home';
+import Start from './components/start/Start';
+import { routesMap } from './routes.config';
 
 const PrivateApp = () => {
   return (
     <div className={styles.App}>
       <Route component={EnsureLoggedIn} />
-      <div className={styles.Header}>
-        <Header></Header>
-      </div>
-      <main>
-          <Suspense fallback={<div>Loading...</div>}>
-            {
-              <div>testtest</div>
-              // Object.keys(routesMap).map((routeKey, index) => {
-              //   const route = routesMap[routeKey]
-              //   return (
-              //     <Route key={index} exact path={route.path} component={route.component} />
-              //   )
-              // })
-            }
-          </Suspense>
-        </main>
+      <Route exact component={Home} path={routesMap.HOME.path} />
+      <Route component={Start} path={routesMap.FAMILY.path} />
     </div>
   );
 }

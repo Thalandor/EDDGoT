@@ -1,18 +1,25 @@
 import React from 'react';
 import styles from './Home.module.scss'
-import { Utils } from '../../utils/utils';
+import { RouteComponentProps, withRouter } from 'react-router';
+import { routesMap } from '../../routes.config';
+import Family from '../family/Family';
+import { Families } from '../family/families';
 
-const Home = () =>{
-    const test = () => {
-        console.log('hola');
-    }
+const Home = (props: RouteComponentProps) =>{
+
+
     return (
-        <div>
-            <button onClick={() => Utils.GetConfig()}></button>
-            hola
+        <div className={styles.familySelectorContainer}>
+            Select your allegiance:
+            {
+                Families.map((family,index) => {                   
+                    return <Family name={family.name} key={index} warcry={family.warcry} picture={family.picture}></Family>
+                })            
+            }
+
         </div>
         
     )
 }
 
-export default Home;
+export default withRouter(Home);
