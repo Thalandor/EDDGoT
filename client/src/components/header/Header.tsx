@@ -7,24 +7,16 @@ import LogoutBtn from '../logout/logout';
 const Header = () => {
 
   return (
-    <div>
-      <ul className="navBar">
+    <div className={styles.container}>
         {
           Object.keys(familyRoutesMap).map((routeKey, index) => {
             const route = familyRoutesMap[routeKey]
             return (
-              <div>
-                {
-                  <li>
-                    <Link key={index} to={route.path}>{route.label}</Link>
-                  </li>
-                }
-              </div>
+                <Link className="nes-btn is-primary" key={index} to={route.path}>{route.label}</Link>
             )
           })
         }
 
-      </ul>
       <LogoutBtn></LogoutBtn>
     </div>
   )

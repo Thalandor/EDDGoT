@@ -1,0 +1,14 @@
+.privateAreaContainer{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .generalText{
+        margin-top:20px;
+        margin-bottom: 20px;
+    }
+
+    .particularText{
+        margin-bottom: 20px;
+    }
+}

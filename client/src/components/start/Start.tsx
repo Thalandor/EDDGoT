@@ -7,11 +7,11 @@ import { Route } from 'react-router';
 
 const Start = () => {
   return (
-    <div>
+    <div className={styles.Container}>
       <div className={styles.Header}>
         <Header></Header>
       </div>
-      <main>
+      <main className={styles.Content}>
         <Suspense fallback={<div>Loading...</div>}>
           {
             Object.keys(familyRoutesMap).map((routeKey, index) => {

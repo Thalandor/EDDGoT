@@ -1,15 +1,28 @@
 .familyContainer{
-    background-color: black;
     display: flex;    
-    border: 1px solid white;
-
+    margin: 40px;
+    border: 5px solid white;
+    border-radius: 20px;
+    padding: 20px;
+    flex: 1;
+    // padding-bottom: 75%;
     .picture{
-        width: 350px;
+        display: flex;
+        height: 100%;
+        justify-content: center;
+    }
+    img{
+        // max-width: 350px;
+        // max-height: 400px;
     }
 
     .familyInfo{
         display: flex;
         flex-direction: column;
+        justify-content: space-evenly;
+        .infoTitle{
+            font-weight: bolder;
+        }
     }
 }
 

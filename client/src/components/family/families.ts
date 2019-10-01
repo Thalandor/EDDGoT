@@ -1,23 +1,34 @@
 export interface IFamily{
     picture: string,
     name: string,
-    warcry: string
+    warcry: string,
+    family: FamiliesEnum
 }
+
+export enum FamiliesEnum{
+    LANNISTER, 
+    STARK,
+    TARGARYEN
+}
+
 export const Families: IFamily[] = [
     {
-        picture: "",
+        picture: process.env.PUBLIC_URL + '/assets/animatedTywin.gif',
         name: "Lannister",
-        warcry: "Hear me roar!"
+        warcry: "Hear me roar!",
+        family: FamiliesEnum.LANNISTER
     },
     {
-        picture: "",
+        picture: process.env.PUBLIC_URL + '/assets/animatedNed.gif',
         name: "Stark",
-        warcry: "Winter is comming!"
+        warcry: "Winter is comming!",
+        family: FamiliesEnum.STARK
     },
     {
-        picture: "",
+        picture: process.env.PUBLIC_URL + '/assets/animatedDaenerys.gif',
         name: "Targaryen",
-        warcry: "Fire and blood!"
+        warcry: "Fire and blood!",
+        family: FamiliesEnum.TARGARYEN
     }
 
 ]

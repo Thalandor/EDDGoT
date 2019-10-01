@@ -3,28 +3,34 @@ import styles from './Family.module.scss'
 import { withRouter, RouteComponentProps } from 'react-router';
 import { routesMap, familyRoutesMap } from '../../routes.config';
 import { LocalStorageHelper } from '../../utils/localStorageHelper';
+import { FamiliesEnum } from './families';
 
-export interface FamilyProps{
+export interface FamilyProps {
     name: string;
     warcry: string;
     picture: string;
+    family: FamiliesEnum;
 }
 
 const Family = (props: FamilyProps & RouteComponentProps) => {
-    const familyChoosenClick = (name: string) => {
+    const familyChoosenClick = (name: FamiliesEnum) => {
         LocalStorageHelper.saveValue("family", name);
         props.history.push(routesMap.FAMILY.path)
     }
     return (
-        <div className={styles.familyContainer} onClick={() => familyChoosenClick(props.name)}>
+        <div className={styles.familyContainer} onClick={() => familyChoosenClick(props.family)}>
             <div className={styles.picture}>
-                {props.picture}
+                {<img src={props.picture}></img>}
             </div>
             <div className={styles.familyInfo}>
-                <div>Family:</div>
-                <div>{props.name}</div>
-                <div>Warcry:</div>
-                <div>{props.warcry}</div>
+                <div className={styles.info}>
+                    <div className={styles.infoTitle}>Family:</div>
+                    <div>{props.name}</div>
+                </div>
+                <div>
+                    <div>Warcry:</div>
+                    <div>{props.warcry}</div>
+                </div>
             </div>
         </div>
 

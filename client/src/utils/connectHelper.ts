@@ -1,4 +1,5 @@
 import { Connect } from 'uport-connect';
+import Web3 from 'web3';
 export let uport = new Connect('EDD', {
     bannerImage: { '/': '/ipfs/Qmbp2YPeDmr2aCPiwWuJT8y87z2N4tHb65RfF1gmKg1iCF' },
     description: 'Something weird.',
@@ -31,21 +32,27 @@ export const requestCredentials = () => {
 
 export const hasCredentials = async () => {
     let response = await uport.onResponse('disclosureReq')
-    if(response.payload && response.payload.WeddingInvitation){
+    if (response.payload && response.payload.WeddingInvitation) {
         return true;
-    }else{
+    } else {
         return false;
     }
 }
 
 
-export const getPayment = () => {
-    const txObj = {
-        address: '0x71845bbfe5ddfdb919e780febfff5eda62a30fdc',
-        value: 1 * 1.0e18
-      }
-      uport.sendTransaction(txObj, 'ethSendReq')
-      uport.onResponse('ethSendReq').then(res => {
-        const txId = res.payload
-      })
+export const getPayment = async () => {
+    const uportProvider = uport.getProvider();
+
+    const web3 = new Web3(uportProvider);
+
+    let accounts = await web3.eth.getAccounts();
+    uport.loadState();
+    const txobject = {
+        to: '0x696714Cc3DF9F067c1654d9376Bf0678E6A81A33',
+        value: "0.00001",
+        // from: accounts[0],
+    }
+    uport.sendTransaction(txobject, 'setStatus')
+    const res = await uport.onResponse('setStatus'); 
+    return res.payload;
 }
