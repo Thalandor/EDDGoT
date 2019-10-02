@@ -32,12 +32,12 @@ const PrivateArea = () => {
             </div>
         )
     } else {
-        let familyInfo = privateInfo.filter(pi => pi.family == LocalStorageHelper.getValue("family"))[0];
+        let familyInfo = privateInfo.filter(pi => pi.family === LocalStorageHelper.getValue("family"))[0];
         return (
             <div className={styles.privateAreaContainer}>
                 <div className={styles.generalText}>Congratulations! You have survived to the game of identities.</div>
                 <div className={styles.particularText}>{familyInfo.text}</div>
-                <img src={familyInfo.picture}></img>
+                <img alt="familypic" src={familyInfo.picture}></img>
             </div>
         )
     }

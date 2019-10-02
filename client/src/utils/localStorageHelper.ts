@@ -9,7 +9,7 @@ export class LocalStorageHelper{
     public static getValue<T>(key: string){
         const value = localStorage.getItem(key);
         if(value){
-            return <T>JSON.parse(value);
+            return JSON.parse(value) as T;
         }
         return null;
     }

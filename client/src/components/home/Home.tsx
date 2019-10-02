@@ -1,7 +1,6 @@
 import React from 'react';
 import styles from './Home.module.scss'
 import { RouteComponentProps, withRouter } from 'react-router';
-import { routesMap } from '../../routes.config';
 import Family from '../family/Family';
 import { Families } from '../family/families';
 

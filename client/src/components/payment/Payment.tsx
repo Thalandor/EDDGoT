@@ -35,13 +35,13 @@ const Payment = () => {
         let paymentMade = await getPayment();
         setPayment(Boolean(paymentMade));
     }
-    let family = FamilyPaymentInfo.filter(fp => fp.family == LocalStorageHelper.getValue<FamiliesEnum>("family"))[0];
+    let family = FamilyPaymentInfo.filter(fp => fp.family === LocalStorageHelper.getValue<FamiliesEnum>("family"))[0];
 
     if (isPaymentMade) {
         return (
             <div className={styles.paymentContainer}>
                 {family.result}
-                <img src={family.picture}></img>
+                <img alt="picturefamily" src={family.picture}></img>
             </div>
         )
     } else {

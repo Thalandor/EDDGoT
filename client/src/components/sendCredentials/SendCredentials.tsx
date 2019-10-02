@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from './SendCredentials.module.scss'
-import { sendCredentials, uport } from '../../utils/connectHelper';
+import { sendCredentials } from '../../utils/connectHelper';
 import { FamiliesEnum } from '../family/families';
 import { LocalStorageHelper } from '../../utils/localStorageHelper';
 import Mission from '../mission/Mission';
@@ -32,7 +32,7 @@ const SendCredentials = () => {
         sendCredentials();
         console.log('send things');
     }
-    let family = FamilyCredentialInfo.filter(fp => fp.family == LocalStorageHelper.getValue<FamiliesEnum>("family"))[0];
+    let family = FamilyCredentialInfo.filter(fp => fp.family === LocalStorageHelper.getValue<FamiliesEnum>("family"))[0];
     return (
         <div className={styles.sendCredentialsContainer}>
             <Mission pj={family.pj} text={family.text}></Mission>            

@@ -1,5 +1,4 @@
-import React, { useState, useEffect } from 'react';
-import styles from './LogoutBtn.module.scss'
+import React from 'react';
 import { uport } from '../../utils/connectHelper';
 import { withRouter, RouteComponentProps } from 'react-router-dom';
 import { routesMap } from '../../routes.config';

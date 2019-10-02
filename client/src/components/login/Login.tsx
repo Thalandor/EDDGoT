@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import styles from './Login.module.scss'
-import { uport, requestLogin, onResponseRequest } from '../../utils/connectHelper';
+import { requestLogin, onResponseRequest } from '../../utils/connectHelper';
 import { LocalStorageHelper } from '../../utils/localStorageHelper';
 import { withRouter, RouteComponentProps } from 'react-router-dom';
 import { routesMap } from '../../routes.config';

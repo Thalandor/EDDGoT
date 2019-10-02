@@ -1,6 +1,5 @@
 import React, { Suspense } from 'react';
 import styles from './Start.module.scss'
-import { Utils } from '../../utils/utils';
 import Header from '../header/Header';
 import { familyRoutesMap } from '../../routes.config';
 import { Route } from 'react-router';

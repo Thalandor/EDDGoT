@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from './Family.module.scss'
 import { withRouter, RouteComponentProps } from 'react-router';
-import { routesMap, familyRoutesMap } from '../../routes.config';
+import { routesMap } from '../../routes.config';
 import { LocalStorageHelper } from '../../utils/localStorageHelper';
 import { FamiliesEnum } from './families';
 
@@ -20,7 +20,7 @@ const Family = (props: FamilyProps & RouteComponentProps) => {
     return (
         <div className={styles.familyContainer} onClick={() => familyChoosenClick(props.family)}>
             <div className={styles.picture}>
-                {<img src={props.picture}></img>}
+                {<img alt="pj" src={props.picture}></img>}
             </div>
             <div className={styles.familyInfo}>
                 <div className={styles.info}>
