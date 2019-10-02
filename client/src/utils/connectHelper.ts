@@ -42,17 +42,13 @@ export const hasCredentials = async () => {
 
 export const getPayment = async () => {
     const uportProvider = uport.getProvider();
-
     const web3 = new Web3(uportProvider);
-
     let accounts = await web3.eth.getAccounts();
-    uport.loadState();
     const txobject = {
         to: '0x696714Cc3DF9F067c1654d9376Bf0678E6A81A33',
-        value: "0.00001",
-        // from: accounts[0],
+        value: 1,
+        from: accounts[0],
     }
-    uport.sendTransaction(txobject, 'setStatus')
-    const res = await uport.onResponse('setStatus'); 
-    return res.payload;
+    let res = await web3.eth.sendTransaction(txobject);
+    return res.transactionHash;
 }
