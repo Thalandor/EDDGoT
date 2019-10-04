@@ -12,7 +12,7 @@ interface privateInfo {
 
 const privateInfo: privateInfo[] = [{ family: FamiliesEnum.LANNISTER, text: "After your valuable participation, finally the family decided to trust you a preview of his new warcry", picture: `${process.env.PUBLIC_URL}/assets/lannister_private.jpg` },
 { family: FamiliesEnum.STARK, text: "After a long fight, you have discovered the most important secret of the whole world!", picture: `${process.env.PUBLIC_URL}/assets/stark_private.jpg` },
-{ family: FamiliesEnum.TARGARYEN, text: "You gained the trust of your khaalesi. yYou smile at her, she smiles at you. You know something good is going to happen today.", picture: `${process.env.PUBLIC_URL}/assets/targaryen_private.jpg` }]
+{ family: FamiliesEnum.TARGARYEN, text: "You gained the trust of your khaalesi. You smile at her, she smiles at you. You know something good is going to happen today.", picture: `${process.env.PUBLIC_URL}/assets/targaryen_private.jpg` }]
 
 const PrivateArea = () => {
     useEffect(() => {
