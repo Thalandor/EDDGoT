@@ -50,8 +50,8 @@ export const onResponseRequest = async () => {
 // of the project. And a property claim. Which is a json object representing the data you want to send. Example of a claim:    { 'NameOfCredential': { 'NameofProperty': `Information.` } }
 // Avoid spaces and slashes in nameofcredential and nameofproperty!!!!
 // Lannister part: Create a wedding pass for the Stark to celebrate the wedding of Robb and Talissa.
-// Stark: Create an Id for the free men that comes with Jon.
-// Targaryen: Create an Id so you can ride Daenerys dragons.
+// Stark: Create an ID for the knee bending club for Jon.
+// Targaryen: Create an Id to remember the name of your khaleesi.
 export const sendCredentials = () => {
 
 }
