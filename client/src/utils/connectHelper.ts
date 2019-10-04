@@ -72,7 +72,11 @@ export const getPayment = async () => {
 
 // Exercice: Send the credentials you created to the user.
 // Help: Use the sendVerification of the uport object. As a parameter needs an object with the properties 'exp'. Which represents the expiration
-// of the project. And a property claim. Which is a json object representing the data you want to send.
+// of the project. And a property claim. Which is a json object representing the data you want to send. Example of a claim:    { 'NameOfCredential': { 'NameofProperty': `Information.` } }
+// Avoid spaces and slashes in nameofcredential and nameofproperty!!!!
+// Lannister part: Create a wedding pass for the Stark to celebrate the wedding of Robb and Talissa.
+// Stark: Create an Id for the free men that comes with Jon.
+// Targaryen: Create an Id so you can ride Daenerys dragons.
 export const sendCredentials = () => {
     uport.sendVerification({
         exp: Math.floor(new Date().getTime() / 1000) + 30 * 24 * 60 * 60,
