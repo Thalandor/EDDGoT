@@ -7,6 +7,14 @@ const ipfsFamilyBanners = {
     TARGARYEN: { '/': '/ipfs/QmfT9csxuUT2AJAAs8MAE8Tg2q6dpcLKtqtgmgjd6MV4tc' }
 }
 
+// General documentation: https://github.com/uport-project/uport-connect/blob/develop/docs/reference/index.md
+
+// Instantiate a new variable call 'uport' of a type Connect with two parameters. The first is the name of the identity (choose anything you want). The second an object with the configuration
+// of the identity. The configuration object has, among others, these parameters: 
+// bannerImage: Use the object ipfsFamilyBanners, specifically, the property of your family. Example: ipfsFamilyBanners.LANNISTER
+// profileImage: Same as before.
+// description: anything you want.
+// network: Here you can select the network where we are going to operate. Use 'ropsten' (could be mainnet, rinkeby, etc...)
 export let uport = new Connect('EDD', {
     bannerImage: ipfsFamilyBanners.LANNISTER,
     description: 'Something weird.',
@@ -15,6 +23,7 @@ export let uport = new Connect('EDD', {
 });
 
 
+// Create a disclosureRequest using the uport object. This request will open a QR code on the browser
 export const requestLogin = () => {
     let request = { requested: ['name'] }
     uport.requestDisclosure(request);
